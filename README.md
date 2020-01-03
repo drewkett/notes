@@ -13,11 +13,15 @@
 
 # Utilities
 ## Multi-Platform
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - Better version of grep
 
 ## Backup
 - [borg](https://www.borgbackup.org/)
 
 ## Windows
+- [Everything](https://www.voidtools.com/) - File Finder
+  - Reads NTFS index and indexes entire disk. Much faster but requires admin
+- [WizTree](https://antibody-software.com/web/software/software/wiztree-finds-the-files-and-folders-using-the-most-disk-space-on-your-hard-drive/) - Disk Usage
+  - Reads NTFS index. Much faster but requires admin
 - [Dependency Walker](http://dependencywalker.com/)
   - Look up DLL's used by program to track down execution errors due to missing library
