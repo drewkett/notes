@@ -1,3 +1,10 @@
+# Table of Contents
+- [Engineering](#engineering)
+- [Programming](#programming)
+- [Software](#software)
+
+---
+
 # Engineering
 ## CFD
 - [FUN3D](https://fun3d.larc.nasa.gov/)
@@ -36,7 +43,7 @@ let version = env!("CARGO_PKG_VERSION");
   - Python
   - Postgres
 
-# Utilities
+# Software
 ## Multi-Platform
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - Better version of grep
 
