@@ -2,6 +2,12 @@
 ## CFD
 - [FUN3D](https://fun3d.larc.nasa.gov/)
   - Unstructured Mesh CFD Solver
+- [Wiliam Toet expains...CFD Post Processing](https://www.racetechmag.com/2019/02/willem-toet-explains-cfd-post-processing/)
+  - Interesting artical on Post Processing with nice images
+
+### Validation Cases
+- [CFD-online](https://www.cfd-online.com/Links/refs.html#validation)
+- [Drag Prediction Workshop](https://aiaa-dpw.larc.nasa.gov/)
   
 # Programming
 ## Job Queues
