@@ -1,7 +1,13 @@
 # Table of Contents
 - [Engineering](#engineering)
+  - [CFD](#cfd)
 - [Programming](#programming)
+  - [Rust](#rust)
+  - [Job Queues](#job-queues)
 - [Software](#software)
+  - [Multi-Platform](#multi-platform)
+  - [Backup](#backup)
+  - [Windows](#windows)
 
 ---
 
