@@ -52,6 +52,15 @@ let version = env!("CARGO_PKG_VERSION");
   - Postgres
 
 # Sys Admin
+## BTRFS
+### COW (Copy On Write)
+Make sure to disable COW for virtual machine images. `chattr +C {file}/{dir}` to disable. Disabling doesn't work for existing files. Run `lsattr {file}/{dir}` and look for `C` to confirm that its been disabled. To enable on an existing file, either create a new empty file, enable it and then copy the data over it, or enable it on a folder and make a copy of the file.
+
+My understanding is that even with COW disabled, snapshots still function by temporarily enabling COW. I'm not sure what the implications are for VM types files and potential fragmentation. 
+
+### incrbtrfs
+My go program for creating regular snapshots of the filesystem and syncing them to another computer running btrfs
+
 ## Swap
 If performance is the goal, over provision memory and disable swap. For vm host, be sure to disable in both host and guest. Next best option is to attach a small ssd for swap.
 
