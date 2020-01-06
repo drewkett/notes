@@ -99,7 +99,7 @@ I primarily use it to maintain long running processes on remote servers where I 
 
 Default keyboard shortcut for most things is ctrl-b + ____
 
-To split the terminal `ctrl-b + "` (Horizontal) or `ctrl-b + %` (Vertical)
+To split the terminal `ctrl-b + "` (Horizontal) or `ctrl-b + %` (Vertical). `ctrl-b + {Arrow Keys}` to switch between terminals
 
 To exit a tmux session without closing the underlying process `ctrl-b + d`
 
