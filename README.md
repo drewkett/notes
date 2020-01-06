@@ -5,11 +5,13 @@
   - [Rust](#rust)
   - [Job Queues](#job-queues)
 - [Sys Admin](#sys-admin)
+  - [BTRFS](#btrfs)
   - [Swap](#swap)
 - [Software](#software)
   - [Multi-Platform](#multi-platform)
   - [Backup](#backup)
   - [Windows](#windows)
+  - [tmux](#tmux)
 
 ---
 
@@ -91,3 +93,18 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
   - Reads NTFS index. Much faster but requires admin
 - [Dependency Walker](http://dependencywalker.com/)
   - Look up DLL's used by program to track down execution errors due to missing library
+
+## tmux
+I primarily use it to maintain long running processes on remote servers where I don't want the process to die if ssh connection dies. 
+
+Default keyboard shortcut for most things is ctrl-b + ____
+
+To split the terminal `ctrl-b + "` (Horizontal) or `ctrl-b + %` (Vertical)
+
+To exit a tmux session without closing the underlying process `ctrl-b + d`
+
+To reattach to a previous tmux session
+```
+tmux a
+```
+
