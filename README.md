@@ -55,6 +55,11 @@ let version = env!("CARGO_PKG_VERSION");
 ## Swap
 If performance is the goal, over provision memory and disable swap. For vm host, be sure to disable in both host and guest. Next best option is to attach a small ssd for swap.
 
+See swap partitions in use
+```
+cat /proc/swaps
+```
+
 Swap can be disabled on a running linux system with 
 ```
 swapoff -a
