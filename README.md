@@ -61,7 +61,7 @@ swapoff -a
 ```
 This can take a long time if the swap is heavily used as it needs to move everything in swap back to RAM.
 
-To disable permanently, check `/etc/fstab` for swap partitions. (Not sure if there is another way swap can be set up)
+To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not sure if there is another way swap can be set up)
 
 # Software
 ## Multi-Platform
