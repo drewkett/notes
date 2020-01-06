@@ -4,6 +4,8 @@
 - [Programming](#programming)
   - [Rust](#rust)
   - [Job Queues](#job-queues)
+- [Sys Admin](#sys-admin)
+  - [Swap](#swap)
 - [Software](#software)
   - [Multi-Platform](#multi-platform)
   - [Backup](#backup)
@@ -52,6 +54,14 @@ let version = env!("CARGO_PKG_VERSION");
 # Sys Admin
 ## Swap
 If performance is the goal, over provision memory and disable swap. For vm host, be sure to disable in both host and guest. Next best option is to attach a small ssd for swap.
+
+Swap can be disabled on a running linux system with 
+```
+swapoff -a
+```
+This can take a long time if the swap is heavily used as it needs to move everything in swap back to RAM.
+
+To disable permanently, check `/etc/fstab` for swap partitions. (Not sure if there is another way swap can be set up)
 
 # Software
 ## Multi-Platform
