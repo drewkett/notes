@@ -49,6 +49,10 @@ let version = env!("CARGO_PKG_VERSION");
   - Python
   - Postgres
 
+# Sys Admin
+## Swap
+If performance is the goal, over provision memory and disable swap. For vm host, be sure to disable in both host and guest. Next best option is to attach a small ssd for swap.
+
 # Software
 ## Multi-Platform
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - Better version of grep
