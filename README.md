@@ -53,6 +53,8 @@ Make sure to disable COW for virtual machine images. `chattr +C {file}/{dir}` to
 My understanding is that even with COW disabled, snapshots still function by temporarily enabling COW. I'm not sure what the implications are for VM types files and potential fragmentation. 
 
 ### incrbtrfs
+[Github](https://github.com/drewkett/incrbtrfs)
+
 My go program for creating regular snapshots of the filesystem and syncing them to another computer running btrfs
 
 ## Swap
@@ -77,6 +79,12 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
 
 ## Backup
 - [borg](https://www.borgbackup.org/)
+  - Encrypted
+  - Incremental
+  - Compressed
+- [borgmatic](https://www.borgbackup.org/)
+  - Python library to help automate borg backups
+- [incrbtrfs](#incrbtrfs)
 
 ## Windows
 - [Everything](https://www.voidtools.com/) - File Finder
