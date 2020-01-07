@@ -87,7 +87,7 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
     - Python library to help automate borg backups
   - [incrbtrfs](#incrbtrfs)
 - Commercial
-  - [https://www.barracuda.com/products/backup](https://www.barracuda.com/products/backup)
+  - [Barracuda](https://www.barracuda.com/products/backup)
     - Rack mounted appliance
       - Backs up Windows/Linux machines
         - Works ok. Intermittent failures that seem to resolve on next backup
