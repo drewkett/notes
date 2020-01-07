@@ -78,13 +78,26 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - Better version of grep
 
 ## Backup
-- [borg](https://www.borgbackup.org/)
-  - Encrypted
-  - Incremental
-  - Compressed
-- [borgmatic](https://www.borgbackup.org/)
-  - Python library to help automate borg backups
-- [incrbtrfs](#incrbtrfs)
+- Open Source
+  - [borg](https://www.borgbackup.org/)
+    - Encrypted
+    - Incremental
+    - Compressed
+  - [borgmatic](https://www.borgbackup.org/)
+    - Python library to help automate borg backups
+  - [incrbtrfs](#incrbtrfs)
+- Commercial
+  - [https://www.barracuda.com/products/backup](https://www.barracuda.com/products/backup)
+    - Rack mounted appliance
+      - Backs up Windows/Linux machines
+        - Works ok. Intermittent failures that seem to resolve on next backup
+        - Had issues where the dns got out of wack and caused a lot of issues.
+        - Interface is clunky
+        - On appliance deduplication/compression isn't impressive. Supposedly its due to it automatically turning it off when cpu is under load. Maybe a bigger appliance would not exhibit issues, but performance is tied to disk size I believe.
+    - Cloud backup can back up cloud data (eg. O365)
+      - Includes data in sharepoint, teams, emails, calendars
+      - Seems to work. Backs up nightly. Intermittent failures, that may just be from attempting to back up files that have already been removed or something. Subsequent backups for some user seem to go ok, so haven't delved into it.
+    - They also offer email security, which has been working well. 
 
 ## Windows
 - [Everything](https://www.voidtools.com/) - File Finder
