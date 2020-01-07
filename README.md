@@ -125,6 +125,10 @@ tmux a
 ```
 
 ## vim
+[Neovim](https://github.com/neovim/neovim)
+
+[My init.vim file (.vimrc)](./init.vim)
+
 ### Environments
 - [SpaceVim](https://github.com/SpaceVim/SpaceVim) - Never used it. Used to use spacemacs
 
