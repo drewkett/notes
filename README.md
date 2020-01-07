@@ -14,6 +14,8 @@
   - [Backup](#backup)
   - [Windows](#windows)
   - [tmux](#tmux)
+  - [VS Code](#vs-code)
+  - [vim](#vim)
 
 ---
 
@@ -123,6 +125,10 @@ To reattach to a previous tmux session
 ```
 tmux a
 ```
+
+## VS Code
+[Link](https://code.visualstudio.com/)
+The microsoft python plugin is really nice with jupyter integration
 
 ## vim
 [Neovim](https://github.com/neovim/neovim)
