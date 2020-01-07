@@ -127,7 +127,8 @@ tmux a
 ## vim
 [Neovim](https://github.com/neovim/neovim)
 
-[My init.vim file (.vimrc)](./init.vim)
+[My init.vim file (.vimrc)](./init.vim) 
+This is a work in progress. I've used vs code for a lot of things, but would like to switch back to vim for some things.
 
 ### Environments
 - [SpaceVim](https://github.com/SpaceVim/SpaceVim) - Never used it. Used to use spacemacs
