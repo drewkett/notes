@@ -57,6 +57,9 @@ My understanding is that even with COW disabled, snapshots still function by tem
 
 My go program for creating regular snapshots of the filesystem and syncing them to another computer running btrfs
 
+### Misc.
+- [WinBtrfs](https://github.com/maharmstone/btrfs) - Windows driver for accessing btrfs filesystems. Never tried it
+
 ## Swap
 If performance is the goal, over provision memory and disable swap. For vm host, be sure to disable in both host and guest. Next best option is to attach a small ssd for swap.
 
@@ -97,7 +100,7 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
 ## tmux
 I primarily use it to maintain long running processes on remote servers where I don't want the process to die if ssh connection dies. 
 
-Default keyboard shortcut for most things is ctrl-b + ____
+Default keyboard shortcut for most things is ctrl-b + {key}
 
 To split the terminal `ctrl-b + "` (Horizontal) or `ctrl-b + %` (Vertical). `ctrl-b + {Arrow Keys}` to switch between terminals
 
@@ -108,3 +111,6 @@ To reattach to a previous tmux session
 tmux a
 ```
 
+### Packages
+- [vim-plug](https://github.com/junegunn/vim-plug) - Package manager
+- [vim-fugitive](https://github.com/tpope/vim-fugitive) - git interaction
