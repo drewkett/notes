@@ -121,3 +121,5 @@ To reattach to a previous tmux session
 tmux a
 ```
 
+## vim
+- [SpaceVim](https://github.com/SpaceVim/SpaceVim)
