@@ -48,6 +48,17 @@
   - Postgres
 
 # Sys Admin
+## Windows
+### SSH
+For windows server 2016 (and presumably others), a microsoft build of openssh is available at [GitHub Link](https://github.com/PowerShell/Win32-OpenSSH). It can be installed with powershell install script found inside zip. SSH can be installed as a feature for windows 10 and windows server 2019 directly.
+
+### NFS
+NFS is available on windows server to install as a Role/Feature. Haven't messed around with authentication but you can set up read only access for connections from a specific ip for example
+
+I had an issue where I couldn't access one file with seemingly identical permissions to another from a linux client. The difference in the files was the file owner. If I set the owner of the file to administrators, it worked
+
+Note: The visible unix permissions in linux seem to be dynamically generated to map to the effective permissions for the file with respect to owner/group/other permssions.
+
 ## BTRFS
 ### COW (Copy On Write)
 Make sure to disable COW for virtual machine images. `chattr +C {file}/{dir}` to disable. Disabling doesn't work for existing files. Run `lsattr {file}/{dir}` and look for `C` to confirm that its been disabled. To enable on an existing file, either create a new empty file, enable it and then copy the data over it, or enable it on a folder and make a copy of the file.
