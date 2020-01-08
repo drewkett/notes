@@ -53,7 +53,9 @@
 For windows server 2016 (and presumably others), a microsoft build of openssh is available at [GitHub Link](https://github.com/PowerShell/Win32-OpenSSH). It can be installed with powershell install script found inside zip. SSH can be installed as a feature for windows 10 and windows server 2019 directly.
 
 ### NFS
-NFS is available on windows server to install as a Role/Feature. Haven't messed around with authentication but you can set up read only access for connections from a specific ip for example
+NFS is available on windows server to install as a Role/Feature. Haven't messed around with authentication but you can set up read only access for connections from a specific ip for example. 
+
+It seems to be a little faster than SMB file sharing, though minimal testing was done
 
 I had an issue where I couldn't access one file with seemingly identical permissions to another from a linux client. The difference in the files was the file owner. If I set the owner of the file to administrators, it worked
 
