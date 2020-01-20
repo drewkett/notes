@@ -116,6 +116,8 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
       - Includes data in sharepoint, teams, emails, calendars
       - Seems to work. Backs up nightly. Intermittent failures, that may just be from attempting to back up files that have already been removed or something. Subsequent backups for some user seem to go ok, so haven't delved into it.
     - They also offer email security, which has been working well. 
+  - [rclone](./rclone.md)
+  
 
 ## Windows
 - [Everything](https://www.voidtools.com/) - File Finder
