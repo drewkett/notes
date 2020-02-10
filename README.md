@@ -14,6 +14,8 @@
   - [Backup](#backup)
   - [Windows](#windows)
   - [tmux](#tmux)
+  - [VS Code](#vs-code)
+  - [vim](#vim)
 
 ---
 
@@ -46,6 +48,19 @@
   - Postgres
 
 # Sys Admin
+## Windows
+### SSH
+For windows server 2016 (and presumably others), a microsoft build of openssh is available at [GitHub Link](https://github.com/PowerShell/Win32-OpenSSH). It can be installed with powershell install script found inside zip. SSH can be installed as a feature for windows 10 and windows server 2019 directly.
+
+### NFS
+NFS is available on windows server to install as a Role/Feature. Haven't messed around with authentication but you can set up read only access for connections from a specific ip for example. 
+
+It seems to be a little faster than SMB file sharing, though minimal testing was done
+
+I had an issue where I couldn't access one file with seemingly identical permissions to another from a linux client. The difference in the files was the file owner. If I set the owner of the file to administrators, it worked
+
+Note: The visible unix permissions in linux seem to be dynamically generated to map to the effective permissions for the file with respect to owner/group/other permssions.
+
 ## BTRFS
 ### COW (Copy On Write)
 Make sure to disable COW for virtual machine images. `chattr +C {file}/{dir}` to disable. Disabling doesn't work for existing files. Run `lsattr {file}/{dir}` and look for `C` to confirm that its been disabled. To enable on an existing file, either create a new empty file, enable it and then copy the data over it, or enable it on a folder and make a copy of the file.
@@ -56,6 +71,9 @@ My understanding is that even with COW disabled, snapshots still function by tem
 [Github](https://github.com/drewkett/incrbtrfs)
 
 My go program for creating regular snapshots of the filesystem and syncing them to another computer running btrfs
+
+### Misc.
+- [WinBtrfs](https://github.com/maharmstone/btrfs) - Windows driver for accessing btrfs filesystems. Never tried it
 
 ## Swap
 If performance is the goal, over provision memory and disable swap. For vm host, be sure to disable in both host and guest. Next best option is to attach a small ssd for swap.
@@ -98,6 +116,8 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
       - Includes data in sharepoint, teams, emails, calendars
       - Seems to work. Backs up nightly. Intermittent failures, that may just be from attempting to back up files that have already been removed or something. Subsequent backups for some user seem to go ok, so haven't delved into it.
     - They also offer email security, which has been working well. 
+  - [rclone](./rclone.md)
+  
 
 ## Windows
 - [Everything](https://www.voidtools.com/) - File Finder
@@ -110,7 +130,7 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
 ## tmux
 I primarily use it to maintain long running processes on remote servers where I don't want the process to die if ssh connection dies. 
 
-Default keyboard shortcut for most things is ctrl-b + ____
+Default keyboard shortcut for most things is ctrl-b + {key}
 
 To split the terminal `ctrl-b + "` (Horizontal) or `ctrl-b + %` (Vertical). `ctrl-b + {Arrow Keys}` to switch between terminals
 
@@ -121,5 +141,19 @@ To reattach to a previous tmux session
 tmux a
 ```
 
+## VS Code
+[Link](https://code.visualstudio.com/)
+The microsoft python plugin is really nice with jupyter integration
+
 ## vim
-- [SpaceVim](https://github.com/SpaceVim/SpaceVim)
+[Neovim](https://github.com/neovim/neovim)
+
+[My init.vim file (.vimrc)](./init.vim) 
+This is a work in progress. I've used vs code for a lot of things, but would like to switch back to vim for some things.
+
+### Environments
+- [SpaceVim](https://github.com/SpaceVim/SpaceVim) - Never used it. Used to use spacemacs
+
+### Packages
+- [vim-plug](https://github.com/junegunn/vim-plug) - Package manager
+- [vim-fugitive](https://github.com/tpope/vim-fugitive) - git interaction

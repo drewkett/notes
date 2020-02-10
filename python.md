@@ -24,6 +24,20 @@ _Haven't tried it yet_
 
 ### [pipenv](https://pipenv.kennethreitz.org)
 
+# logging
+
+## Enable logging for a particular library at a particular level
+
+```python
+import logging
+l = logging.getLogger("libraryname")
+h = logging.StreamHandler(sys.stderr)
+f = logging.Formatter('%(levelname)-8s %(name)s - %(message)s')
+h.setFormatter(f)
+l.setLevel(logging.DEBUG)
+l.addHandler(h)
+```
+
 ## Debugging
 
 ### Behold
