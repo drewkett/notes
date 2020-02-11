@@ -7,6 +7,7 @@
   - [Libraries](#libraries)
     - [Job Queues](#job-queues)
 - [Sys Admin](#sys-admin)
+  - [Windows Server](#windows-server)
   - [BTRFS](#btrfs)
   - [Swap](#swap)
 - [Software](#software)
@@ -48,7 +49,7 @@
   - Postgres
 
 # Sys Admin
-## Windows
+## Windows Server
 ### SSH
 For windows server 2016 (and presumably others), a microsoft build of openssh is available at [GitHub Link](https://github.com/PowerShell/Win32-OpenSSH). It can be installed with powershell install script found inside zip. SSH can be installed as a feature for windows 10 and windows server 2019 directly.
 
@@ -60,6 +61,17 @@ It seems to be a little faster than SMB file sharing, though minimal testing was
 I had an issue where I couldn't access one file with seemingly identical permissions to another from a linux client. The difference in the files was the file owner. If I set the owner of the file to administrators, it worked
 
 Note: The visible unix permissions in linux seem to be dynamically generated to map to the effective permissions for the file with respect to owner/group/other permssions.
+
+### SDelete
+[Download](https://docs.microsoft.com/en-us/sysinternals/downloads/sdelete)
+
+SysInternals utility for securely deleting files. Can be used to zero out free space which is useful for compression of fixed size virtual machine disks for backup.
+
+The following zeros out all the free space on c:
+```
+sdelete -z c:
+```
+
 
 ## BTRFS
 ### COW (Copy On Write)
@@ -94,6 +106,10 @@ To disable permanently, comment out any `swap` partitions in `/etc/fstab`. (Not 
 # Software
 ## Multi-Platform
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - Better version of grep
+
+## Browser Extensions
+- [SingleFile](https://github.com/gildas-lormeau/SingleFile) 
+  - Downloads a web page as a single html file. Tested and seems to work. Useful for archiving
 
 ## Backup
 - Open Source
