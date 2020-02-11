@@ -5,6 +5,14 @@
 
 [jwkvam/jupyterlab-vim](https://github.com/jwkvam/jupyterlab-vim)
 
+### Voila
+
+Turn jupyter notebooks into (interactive) web pages
+
+[https://blog.jupyter.org/and-voilà-f6a2c08a4a93](https://blog.jupyter.org/and-voil%C3%A0-f6a2c08a4a93)
+
+_Haven't tried it yet_
+
 ## Environments
 ### virtualenv
 
@@ -16,9 +24,23 @@
 
 ### [pipenv](https://pipenv.kennethreitz.org)
 
-# Debugging
+# logging
 
-## Behold
+## Enable logging for a particular library at a particular level
+
+```python
+import logging
+l = logging.getLogger("libraryname")
+h = logging.StreamHandler(sys.stderr)
+f = logging.Formatter('%(levelname)-8s %(name)s - %(message)s')
+h.setFormatter(f)
+l.setLevel(logging.DEBUG)
+l.addHandler(h)
+```
+
+## Debugging
+
+### Behold
 
 [behold/README.md at develop · robdmc/behold · GitHub](https://github.com/robdmc/behold/blob/develop/README.md)
 
@@ -26,15 +48,11 @@ Conditional printing
 
 Seems like a way to leave debugging statements in code without having to pass debug options throughout code. With some fancier features for printing things nicely
 
-# Voila
+_Haven't tried it yet_
 
-Turn jupyter notebooks into (interactive) web pages
+## Email
 
-[https://blog.jupyter.org/and-voilà-f6a2c08a4a93](https://blog.jupyter.org/and-voil%C3%A0-f6a2c08a4a93)
-
-# Email
-
-Simple email example
+Simple email example using localhost smtp server
 
     # Import smtplib for the actual sending function
     import smtplib
@@ -50,7 +68,7 @@ Simple email example
     
     # me == the sender's email address
     # you == the recipient's email address
-    msg['Subject'] = 'The contents of %s' % textfile
+    msg['Subject'] = 'Email subject'
     msg['From'] = me
     msg['To'] = you
     
@@ -63,17 +81,17 @@ ssl sample
 
     def send_email(message):
         msg = EmailMessage()
-        msg['Subject'] = "SIE-LINUX1 - Error running rsync.net backups"
-        msg['from'] = "donotreply@sieinc.com"
-        msg['to'] = "aburkett@sieinc.com"
-        msg.set_content(message)
+        msg['Subject'] = "Critical Information"
+        msg['from'] = "sample@sample.com"
+        msg['to'] = "friend@sample.com"
+        msg.set_content("Hi")
         context = ssl.create_default_context()
         with smtplib.SMTP("smtp.office365.com") as s:
             s.starttls(context=context)
-            s.login("donotreply@sieinc.com","DCY3LaFZeQjYwDNq")
+            s.login("sample@sample.com","sample password")
             s.send_message(msg)
 
-# File lock
+## File locking
 
 This raises and error if it can't acquire the lock. Make sure to keep `lock_f` in scope otherwise python will close the file and release the lock
 
@@ -81,8 +99,10 @@ This raises and error if it can't acquire the lock. Make sure to keep `lock_f` i
     lock_f = lock_file.open("w")
     fcntl.flock(lock_f, fcntl.LOCK_EX | fcntl.LOCK_NB)
 
-# Profiling
+## Profiling
 
-This is a sampling profiler. Never tried it
+[benfred/py-spy](https://github.com/benfred/py-spy) 
+This is a sampling profiler. Nice for longer running processes in particular since it has minimal effect on performance because it samples instead of tracking every execution. 
 
-[benfred/py-spy](https://github.com/benfred/py-spy)
+[line_profiler](https://github.com/rkern/line_profiler)
+Really nice for looking at execution times for specific functions. Using `@profile` function decorator to select functions 
