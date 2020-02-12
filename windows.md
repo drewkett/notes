@@ -25,3 +25,10 @@ Not sure how to use password auth
 [PowerShell/Win32-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH)
 
 Need a local account for login to work. AzureAD accounts can't be used to login as best I can tell
+
+# Sysinternals
+## sdelete
+
+sdelete can securely delete files or directories
+
+sdelete can also write zeros to the empty space on a disk. Useful for fixed size virtual machines, since it would make compression better for archiving
