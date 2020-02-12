@@ -106,3 +106,11 @@ This is a sampling profiler. Nice for longer running processes in particular sin
 
 [line_profiler](https://github.com/rkern/line_profiler)
 Really nice for looking at execution times for specific functions. Using `@profile` function decorator to select functions 
+
+## Interacting with a subprocess
+
+If interacting with an interactive subprocess with python, its important to disable buffering of IO. A way I found to do this
+for a command and response type interactive process was to open a file unbuffered and pass it as the `stdout=` parameter for
+`Popen(...)`. That file can be read from after issuing a command using stdin. You will need to read for whatever the interactive
+program uses to signal that it is ready for another command. You also need to be weary of blocking read commands. I think if 
+done this way, that is avoided but I can't remember for sure. If a read command blocks, you may need to move it to a separate thread

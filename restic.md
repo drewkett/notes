@@ -37,7 +37,7 @@ Here’s my DiskShadow file:
 
 So that basically creates a shadow copy at X:\ then runs the backup script then “unexposes” (deletes) the shadow copy. You would call it by running:
 
-C:\Users\akrabu\.restic\diskshadow.exe -s C:\Users\akrabu\.restic\backup.dsh
+    diskshadow.exe -s backup.dsh
 
 Then just make sure your backup script references X:\ (or whatever letter you choose in the .dsh file) instead of C:\
 
