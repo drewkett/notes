@@ -1,5 +1,6 @@
 # Python
-## Jupyter 
+
+## Jupyter
 
 ### jupyterlab-vim
 
@@ -14,13 +15,17 @@ Turn jupyter notebooks into (interactive) web pages
 _Haven't tried it yet_
 
 ## Environments
+
 ### virtualenv
 
-`venv {directory}` creates a virtual environment for a particular python installation 
+`venv {directory}` creates a virtual environment for a particular python
+installation
 
 ### [poetry](https://python-poetry.org)
 
-`poetry` is similar except it creates a file that you can commit to a git repo to version control with dependencies. Additionally, it can be used in lieu of a setup.py file for publishing/building a package.
+`poetry` is similar except it creates a file that you can commit to a git repo
+to version control with dependencies. Additionally, it can be used in lieu of a
+setup.py file for publishing/building a package.
 
 ### [pipenv](https://pipenv.kennethreitz.org)
 
@@ -46,7 +51,9 @@ l.addHandler(h)
 
 Conditional printing
 
-Seems like a way to leave debugging statements in code without having to pass debug options throughout code. With some fancier features for printing things nicely
+Seems like a way to leave debugging statements in code without having to pass
+debug options throughout code. With some fancier features for printing things
+nicely
 
 _Haven't tried it yet_
 
@@ -56,22 +63,22 @@ Simple email example using localhost smtp server
 
     # Import smtplib for the actual sending function
     import smtplib
-    
+
     # Import the email modules we'll need
     from email.message import EmailMessage
-    
+
     # Open the plain text file whose name is in textfile for reading.
     with open(textfile) as fp:
         # Create a text/plain message
         msg = EmailMessage()
         msg.set_content(fp.read())
-    
+
     # me == the sender's email address
     # you == the recipient's email address
     msg['Subject'] = 'Email subject'
     msg['From'] = me
     msg['To'] = you
-    
+
     # Send the message via our own SMTP server.
     s = smtplib.SMTP('localhost')
     s.send_message(msg)
@@ -93,7 +100,8 @@ ssl sample
 
 ## File locking
 
-This raises and error if it can't acquire the lock. Make sure to keep `lock_f` in scope otherwise python will close the file and release the lock
+This raises and error if it can't acquire the lock. Make sure to keep `lock_f`
+in scope otherwise python will close the file and release the lock
 
     lock_file = Path("baljdkasbsda")
     lock_f = lock_file.open("w")
@@ -101,16 +109,22 @@ This raises and error if it can't acquire the lock. Make sure to keep `lock_f` i
 
 ## Profiling
 
-[benfred/py-spy](https://github.com/benfred/py-spy) 
-This is a sampling profiler. Nice for longer running processes in particular since it has minimal effect on performance because it samples instead of tracking every execution. 
+[benfred/py-spy](https://github.com/benfred/py-spy) This is a sampling profiler.
+Nice for longer running processes in particular since it has minimal effect on
+performance because it samples instead of tracking every execution.
 
-[line_profiler](https://github.com/rkern/line_profiler)
-Really nice for looking at execution times for specific functions. Using `@profile` function decorator to select functions 
+[line_profiler](https://github.com/rkern/line_profiler) Really nice for looking
+at execution times for specific functions. Using `@profile` function decorator
+to select functions
 
 ## Interacting with a subprocess
 
-If interacting with an interactive subprocess with python, its important to disable buffering of IO. A way I found to do this
-for a command and response type interactive process was to open a file unbuffered and pass it as the `stdout=` parameter for
-`Popen(...)`. That file can be read from after issuing a command using stdin. You will need to read for whatever the interactive
-program uses to signal that it is ready for another command. You also need to be weary of blocking read commands. I think if 
-done this way, that is avoided but I can't remember for sure. If a read command blocks, you may need to move it to a separate thread
+If interacting with an interactive subprocess with python, its important to
+disable buffering of IO. A way I found to do this for a command and response
+type interactive process was to open a file unbuffered and pass it as the
+`stdout=` parameter for `Popen(...)`. That file can be read from after issuing a
+command using stdin. You will need to read for whatever the interactive program
+uses to signal that it is ready for another command. You also need to be weary
+of blocking read commands. I think if done this way, that is avoided but I can't
+remember for sure. If a read command blocks, you may need to move it to a
+separate thread
