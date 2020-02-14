@@ -128,3 +128,26 @@ uses to signal that it is ready for another command. You also need to be weary
 of blocking read commands. I think if done this way, that is avoided but I can't
 remember for sure. If a read command blocks, you may need to move it to a
 separate thread
+
+## Build from Source (with openssl)
+
+Make sure correct version of openssl is installed. If not build from source
+
+    ./config --openssldir=/opt/openssl --prefix=/opt/openssl -fPIC
+    make -s -j4
+    make install
+
+Install `libffi, libbz2, liblzma` dev libraries
+
+build python
+
+    ./configure --with-openssl=/opt/openssl --enable-optimizations --exe-suffix=3
+    #Not sure if exe-suffix is right option
+    make -s -j4
+    make install
+
+Make tests failed in some cases but python still seems to work
+
+copy `cacert.pem` from `certifi` package to `cert.pem` in root of openssl
+directory (`/opt/openssl` in this case) if you get
+`unable to get local issuer certificate`
