@@ -81,37 +81,80 @@ tuning a model to test data its useful to know which part of the model to
 change. Often identifying the critical component to a mode isn't difficult to
 identify, but it can be when it is a combination of multiple modes.
 
-There are two ways to identify modal element contribution using a model.
+There are two ways to identify modal element contribution using a model: using
+strain energy or making incremental changes to the stiffness matrix.
 
-- Check the strain energy for a given mode. This is an easy output to add for
-  NASTRAN (`ESE = ALL` in case control) and can show which elements in the model
-  are the biggest contributors for a given mode. It can be looked at in two
-  ways: Strain Energy and Strain Energy Density. Both of these can be useful for
-  different things.
+## Strain Energe
 
-  - Strain Energy Density is useful to identify areas that have more strain than
-    other areas. Though if its just a small section of the model, even if that
-    section gets stiffened greatly, its unlikely to have a signficant effect on
-    the mode and its frequency.
-  - Strain Energy can be used to identify where all the strain energy is for a
-    given mode. This can also be viewed as percent strain energy. It can be
-    useful to sum up strain energy for multiple adjacent elements or types of
-    elements to see the percent strain energy for a particular section of the
-    model. What you're looking for when trying to adjust a model to match
-    something is the property that you can change that has the biggest effect on
-    the mode that you want to change without significantly affecting other modes
-    that you think are correct
+Check the strain energy for a given mode. This is an easy output to add for
+NASTRAN (`ESE = ALL` in case control) and can show which elements in the model
+are the biggest contributors for a given mode. It can be looked at in two ways:
+Strain Energy and Strain Energy Density. Both of these can be useful for
+different things.
 
-- The other option requires a bit of scripting, but is very effective once you
-  have it set up. If you apply a small increase across the whole stiffness
-  matrix, you would get a small increase in all the modal frequencies. The
-  increase can be estimated by doing a first order taylor series expansion of
-  &Omega;<sup>2</sup>. If you do that what you get is that for 1% increase in
-  stiffness, you would expect a 0.5% in a modal frequency. (This would break
-  down at higher increases in stiffness but it is a good approximation for small
-  increases in stiffness). If we take that idea, and apply a 1% increase in
-  stiffness to an individual component (or sets of components) of a model and
-  run the resulting model we can compare the change in natural frequencies to
-  estimate the contribution of that component.
+- Strain Energy Density is useful to identify areas that have more strain than
+  other areas. Though if its just a small section of the model, even if that
+  section gets stiffened greatly, its unlikely to have a signficant effect on
+  the mode and its frequency.
+- Strain Energy can be used to identify where all the strain energy is for a
+  given mode. This can also be viewed as percent strain energy. It can be useful
+  to sum up strain energy for multiple adjacent elements or types of elements to
+  see the percent strain energy for a particular section of the model. What
+  you're looking for when trying to adjust a model to match something is the
+  property that you can change that has the biggest effect on the mode that you
+  want to change without significantly affecting other modes that you think are
+  correct
 
-  TODO This requires more explanation
+## Incremental Stiffness Matrix Variation
+
+This method typically requires a bit of scripting since you may end up running
+many variations of a model, but is very effective once you have it set up.
+
+If you apply a small increase across the whole stiffness matrix, you would get a
+small increase in all the modal frequencies. The increase can be estimated by
+doing a first order taylor series expansion of &Omega;<sup>2</sup> = k/m. If you
+do that, what you get is that for 1% increase in stiffness, you would expect a
+0.5% in a modal frequency. (This would break down at larger increases in
+stiffness but it is a good approximation for small increases in stiffness).
+
+If we take that idea and apply it to individual components in a model and
+individual modes, a 1% increase in stiffness to an individual component (or sets
+of components) of a model and run the resulting model we can compare the change
+in natural frequencies to estimate the contribution of that component. If a 1%
+increase in a single component of a model causes a 0.5% increase in a certain
+mode, that would indicate that that mode is currently entirely driven by the
+changed stiffness in that component. On the other hand if instead, you only see
+a 0.05% change in natural frequency then we can say that the stiffness of that
+component comprises 10% of the variability of that modal frequency for the
+current model.
+
+This can be expanded to the entire model and all the modes if split up a model
+into all of its components. If you run individual cases increasing the stiffness
+of each component by 1% and total up the percent contributions across all the
+modes, you should get approximate 100% contribution for each mode across all the
+components. With that you have basically have a map to guide you on exactly
+which knobs to turn if you want to make adjustments to a model.
+
+> TODO Add code/example to show this
+
+Note that a component in this case could be anything that contributes to the
+stiffness of a model. It could be everything a model that uses a certain
+material (in which case you would vary E/G), or it could be all beams that share
+a property (in which case you may vary A/I1/I2/J) or it could be just a single
+property of a single beam.
+
+Its important to understand how the properties of a model influence the
+stiffness of a model. If you increase a plate thickness by 1%, you actually
+increase the tensile and shear stiffness by 1% but the bending stiffness of the
+plate would increase by a factor 1.01^3. This would break the underlying
+assumption in terms of calculating the influence of individual changes. For
+components such as plates it tends to be easier to adjust the modulus of the
+underlying material. If scripting this method, this can be done be creating new
+materials and properties that are copies of existing ones and pointing only
+particular plate elements to these new materials and properties. Then you can
+adjust the modulus and not worry about needing to change the thickness
+
+With that said, if you don't concern yourself too much with getting 100%
+contributions for each mode and are only using it as a guide on which mode is
+influenced by each component, its a bit less critical to make sure that you only
+make the same 1% increase everywhere.
