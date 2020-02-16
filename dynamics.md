@@ -158,3 +158,33 @@ With that said, if you don't concern yourself too much with getting 100%
 contributions for each mode and are only using it as a guide on which mode is
 influenced by each component, its a bit less critical to make sure that you only
 make the same 1% increase everywhere.
+
+# Frequency Response
+
+## Miles Equation
+
+The Miles Equation is a closed form solution for calculating the rms response of
+a single degree of freedom system subject to a uniform random excitation.
+
+![miles equation](miles.png)
+
+This is effectively the square root of the integration of the psd response
+curve. This may seem like it has limited usefulness since you often aren't
+working with a uniform excitation or a single degree of freedom system, but it
+still is useful for estimating when those two assumptions aren't necessarily
+true. For a lightly damped system, the result of the integration of the entire
+curve from 0 to &infin; Hertz is very close to the integral of just the peak. So
+the miles equation can provide a nice estimate for the rms response if the input
+excitation is nearly constant in the range of the particular peak. Similarly for
+a multi mode model, it can still be helpful because you may only be intersted in
+a particular component of a model and its dominant response may only be at a
+single frequency in which case the miles equation can give you a decent estimate
+for the rms response.
+
+The result of the miles equation is an rms g's response. This can be multiplied
+by a stress at 1g for a component to get an rms stress. This is always an
+estimate for a multi degree of freedom model where the stress due to 1g of load
+would be driven by multiple modes typically, but it is a useful way to do a
+quick estimate for the rms stress of a component due to random vibration.
+
+[More Info](https://femci.gsfc.nasa.gov/workshop/2001/posters/simmons/Simmons_MilesEquation.pdf)
