@@ -188,3 +188,13 @@ would be driven by multiple modes typically, but it is a useful way to do a
 quick estimate for the rms stress of a component due to random vibration.
 
 [More Info](https://femci.gsfc.nasa.gov/workshop/2001/posters/simmons/Simmons_MilesEquation.pdf)
+
+## Acoustic Loading
+
+Acoustic loading is the load on a structure due to acoustic pressure waves. In
+aircraft this is important for all engines, particularly propellers which
+produce narrow band pressure waves at the frequency of number of propellers
+times the rotation speed as well as harmonics (integer multiples).
+
+The following paper is a deeper dive into the stress of
+[STRESSES IN SKIN PANELS SUBJECTED TO "RANDOM ACOUSTIC LOADING"](https://apps.dtic.mil/dtic/tr/fulltext/u2/658846.pdf)
