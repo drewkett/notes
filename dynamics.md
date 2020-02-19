@@ -198,3 +198,7 @@ times the rotation speed as well as harmonics (integer multiples).
 
 The following paper is a deeper dive into the stress of
 [STRESSES IN SKIN PANELS SUBJECTED TO "RANDOM ACOUSTIC LOADING"](https://apps.dtic.mil/dtic/tr/fulltext/u2/658846.pdf)
+
+# Modal Testing
+
+Good PDF overview [Modal Excitation](Modal%20Excitation%20Tutorial.pdf)
