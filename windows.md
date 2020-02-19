@@ -20,6 +20,41 @@ It now starts some builtin file server, where you can launch explorer from wsl
 and it accesses the file system using windows explorer. Shows up as a share
 drive
 
+## Terminal Colors
+
+mintty wsltty fix colors
+
+Add this to bashr
+
+    LS_COLORS='ow=01;36;40'
+
+Change minttyrc in `%LOCALAPPDATA%\wsltty\home\%USERNAME%\.minttyrc` or
+`C:\Users\%USERNAME%\AppData\Roaming\wsltty\config`
+
+to
+
+[https://github.com/oumu/mintty-color-schemes/blob/master/base16-monokai-mod.minttyrc](https://github.com/oumu/mintty-color-schemes/blob/master/base16-monokai-mod.minttyrc)
+
+    ForegroundColour=248,248,242
+    BackgroundColour=39,40,34
+    CursorColour=253,157,79
+    Black=39,40,34
+    BoldBlack=117,113,94
+    Red=249,38,114
+    BoldRed=204,6,78
+    Green=166,226,46
+    BoldGreen=122,172,24
+    Yellow=244,191,117
+    BoldYellow=240,169,69
+    Blue=102,217,239
+    BoldBlue=33,199,233
+    Magenta=174,129,255
+    BoldMagenta=126,51,255
+    Cyan=161,239,228
+    BoldCyan=95,227,210
+    White=248,248,242
+    BoldWhite=249,248,245
+
 # SSH
 
 C:\ProgramData\ssh\administrators_authorized_keys
