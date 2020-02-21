@@ -199,9 +199,26 @@ lots of problems
 
 ### Weighting factors
 
-TODO Add discussion on weighting factors
+The weighting factors in the RBE3 can be a way of modifying the distribution of
+the load through the RBE3. If we take the basic setup of the problem above but
+multiple the problem by a new matrix `W` which is a diagonal square matrix with
+the weighting factors of the independent dof's on the diagonal, we get
 
-    ((W*C)'*(W*C))^-1*(W*C)*W
+    W*i = W*A*d
+
+Since `W` is a square matrix the dimensions of the problem don't change. We now
+solve for `d` like we did before
+
+    (W*A)'*W*i = (W*A)'*(W*A)*d
+    d = ((W*A)'*(W*A))^-1*(W*A)*W*i
+
+This new transformation `((W*A)'*(W*A))^-1*(W*A)*W` can be calculated and turned
+into constraint equations. I know it doesn't seem like this method would work
+but it does, sort of. Mathematically it works and produces a result that is
+consistent for finite element analysis. Physically though, it can have very
+unexpected results. RBE3's can be confusing enough, the effects of weighting
+factors actually manage to make the effect of RBE3's even more confusing. Buyer
+Beware.
 
 Note, when the number of dependent degrees of freedom match the the number of
 independent degrees of freedom, it is a statically determined solution in which
