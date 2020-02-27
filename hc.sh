@@ -4,14 +4,15 @@
 hc_id="$1"
 cmd="${@:2}"
 tmpfile=$(mktemp /tmp/hc.XXXXXX)
+exec 3> "$tmpfile"
+exec 4< "$tmpfile"
+rm -f "$tmpfile"
 
 (
 curl -fsS --retry 3 https://hc-ping.com/$hc_id/start > /dev/null
 
-$cmd &> $tmpfile
+$cmd >&3 2>&1
 
-curl -fsS --retry 3 "https://hc-ping.com/$hc_id$([ $? -ne 0 ] && echo -n /fail)" --data "@$tmpfile" > /dev/null
+cat <&4 | curl -fsS --retry 3 "https://hc-ping.com/$hc_id$([ $? -ne 0 ] && echo -n /fail)" --data-binary "@-" > /dev/null
 
 )
-
-rm "$tmpfile"
