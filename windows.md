@@ -75,6 +75,15 @@ Also need to add a rule for firewall
 netsh advfirewall firewall add rule name="SSH" protocol=TCP dir=in localport=22 action=allow
 ```
 
+Default settings make all adming use the admin authorizedkeysfile at `C:\ProgramData\ssh\administrators_authorized_keys`
+
+make sure that file exists and has the right permissions. Shouldn't be accessible by authenticated users. First command below disables inheritance
+
+```
+icacls C:\programdata\ssh\administrators_authorized_keys /inheritance:d
+icacls C:\programdata\ssh\administrators_authorized_keys /remote "Authenticated Users"
+```
+
 # Sysinternals
 
 ## sdelete
