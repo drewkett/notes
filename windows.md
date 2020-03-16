@@ -69,6 +69,12 @@ Not sure how to use password auth
 Need a local account for login to work. AzureAD accounts can't be used to login
 as best I can tell
 
+Also need to add a rule for firewall
+
+```
+netsh advfirewall firewall add rule name="SSH" protocol=TCP dir=in localport=22 action=allow
+```
+
 # Sysinternals
 
 ## sdelete
