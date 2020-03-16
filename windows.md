@@ -75,13 +75,28 @@ Also need to add a rule for firewall
 netsh advfirewall firewall add rule name="SSH" protocol=TCP dir=in localport=22 action=allow
 ```
 
-Default settings make all adming use the admin authorizedkeysfile at `C:\ProgramData\ssh\administrators_authorized_keys`
+Default settings make all adming use the admin authorizedkeysfile at
+`C:\ProgramData\ssh\administrators_authorized_keys`
 
-make sure that file exists and has the right permissions. Shouldn't be accessible by authenticated users. First command below disables inheritance on the file
+make sure that file exists and has the right permissions. There is a script in
+the zip file `FixHostFilePermissions.ps1`. Run it if there are issue.
+
+I had an error where sshd service wouldn't start. Turned out to be an error in
+the config
+
+The following script should work to download and install openssh
 
 ```
-icacls C:\programdata\ssh\administrators_authorized_keys /inheritance:d
-icacls C:\programdata\ssh\administrators_authorized_keys /remote "Authenticated Users"
+%echo off
+cd "%USERPROFILE%\Downloads"
+curl -LJO https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.1.0.0p1-Beta/OpenSSH-Win64.zip
+cd "C:\Program Files"
+powershell.exe -ExecutionPolicy Bypass -File 'C:\Program Files\OpenSSH-Win64\OpenSSH-Win64\install-sshd.ps1'
+powershell.exe -ExecutionPolicy Bypass -File 'C:\Program Files\OpenSSH-Win64\OpenSSH-Win64\FixHostFilePermissions.ps1'
+powershell.exe -ExecutionPolicy Bypass -File 'C:\Program Files\OpenSSH-Win64\OpenSSH-Win64\FixUserFilePermissions.ps1'
+netsh advfirewall firewall add rule name="SSH" protocol=TCP dir=in localport=22 action=allow
+Set-Service sshd -StartupType Automatic
+Set-Service ssh-agent -StartupType Automatic
 ```
 
 # Sysinternals
