@@ -1,0 +1,1 @@
+watchexec -d 300000 -n -- cmd /C  "git add . && git commit -m \"autocommit\""
