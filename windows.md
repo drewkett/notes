@@ -99,6 +99,10 @@ Set-Service sshd -StartupType Automatic
 Set-Service ssh-agent -StartupType Automatic
 ```
 
+I don't have a full grasp on what the permissions are. I tried to replace and
+existing file with scp and I got permissions denied. But if i delete it and
+recreate it it works.
+
 # Sysinternals
 
 ## sdelete
