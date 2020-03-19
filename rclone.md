@@ -89,3 +89,18 @@ Go to
 Make the following query with BASEURL and SITENAME set (Make sure to signin).
 The id number should be the driveid
 https://graph.microsoft.com/beta/sites/BASEURL.sharepoint.com:/sites/SITENAME:/drive?$select=id
+
+## Item not found
+
+Replacing/deleting existing files on Sharepoint gets “item not found” It is a
+known issue that Sharepoint (not OneDrive or OneDrive for Business) may return
+“item not found” errors when users try to replace or delete uploaded files; this
+seems to mainly affect Office files (.docx, .xlsx, etc.). As a workaround, you
+may use the --backup-dir <BACKUP_DIR> command line argument so rclone moves the
+files to be replaced/deleted into a given backup directory (instead of directly
+replacing/deleting them). For example, to instruct rclone to move the files into
+the directory rclone-backup-dir on backend mysharepoint, you may use:
+
+```
+--backup-dir mysharepoint:rclone-backup-dir
+```
