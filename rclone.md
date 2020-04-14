@@ -90,7 +90,7 @@ Make the following query with BASEURL and SITENAME set (Make sure to signin).
 The id number should be the driveid
 https://graph.microsoft.com/beta/sites/BASEURL.sharepoint.com:/sites/SITENAME:/drive?$select=id
 
-## Item not found
+### Item not found
 
 Replacing/deleting existing files on Sharepoint gets “item not found” It is a
 known issue that Sharepoint (not OneDrive or OneDrive for Business) may return
@@ -104,3 +104,7 @@ the directory rclone-backup-dir on backend mysharepoint, you may use:
 ```
 --backup-dir mysharepoint:rclone-backup-dir
 ```
+
+### nameAlreadyExists
+
+I've seen this error. not sure if its also solved by `--backup-dir`
