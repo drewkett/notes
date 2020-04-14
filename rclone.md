@@ -7,26 +7,28 @@ changing and checksum being wrong. Create a file with the following content and
 pass it using `--exclude-from` to rclone. This will first skip all these files
 (you may need to also make capital letter versions of the extensions)
 
-    *.ppt
-    *.pps
-    *.pptx
-    *.xls
-    *.xlsx
-    *.xlsm
-    *.xlsb
-    *.doc
-    *.docx
-    *.docm
-    *.dotx
-    *.dotm
-    *.htm
-    *.html
-    *.aspx
-    *.vsd
-    *.mht
-    *.msg
-    *.mpp
-    *.dwt
+```
+*.ppt
+*.pps
+*.pptx
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
+*.doc
+*.docx
+*.docm
+*.dotx
+*.dotm
+*.htm
+*.html
+*.aspx
+*.vsd
+*.mht
+*.msg
+*.mpp
+*.dwt
+```
 
 Then do a second run with `--include-from` using that file as well as
 `--ignore-size --ignore-checksum` That should copy the remaining files
@@ -54,6 +56,29 @@ Settting up an azure app gives you a app id that can be added to rclone which
 will raise the throttling limits imposed by microsoft. Follow the instructions
 at the link below
 
+Getting your own Client ID and Key You can use your own Client ID if the default
+(client_id left blank) one doesn’t work for you or you see lots of throttling.
+The default Client ID and Key is shared by all rclone users when performing
+requests.
+
+If you are having problems with them (E.g., seeing a lot of throttling), you can
+get your own Client ID and Key by following the steps below:
+
+- Open
+  https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade,
+  then click New registration.
+- Enter a name for your app, choose account type Any Azure AD directory -
+  Multitenant, select Web in Redirect URI Enter http://localhost:53682/ and
+  click Register. Copy and keep the Application (client) ID under the app name
+  for later use.
+- Under manage select Certificates & secrets, click New client secret. Copy and
+  keep that secret for later use.
+- Under manage select API permissions, click Add a permission and select
+  Microsoft Graph then select delegated permissions.
+- Search and select the follwing permssions: Files.Read, Files.ReadWrite,
+  Files.Read.All, Files.ReadWrite.All, offline_access, User.Read. Once selected
+  click Add permissions at the bottom.
+
 [Source](https://rclone.org/onedrive/)
 
 ### Get DriveID for sharepoint
@@ -65,9 +90,17 @@ Make the following query with BASEURL and SITENAME set (Make sure to signin).
 The id number should be the driveid
 https://graph.microsoft.com/beta/sites/BASEURL.sharepoint.com:/sites/SITENAME:/drive?$select=id
 
-### --backup-dir
+## Item not found
 
-Use `--backup-dir` since theres some permissions thing with sharepoint that gets
-resolved with this. This is a directory that will get created at destination
+Replacing/deleting existing files on Sharepoint gets “item not found” It is a
+known issue that Sharepoint (not OneDrive or OneDrive for Business) may return
+“item not found” errors when users try to replace or delete uploaded files; this
+seems to mainly affect Office files (.docx, .xlsx, etc.). As a workaround, you
+may use the --backup-dir <BACKUP_DIR> command line argument so rclone moves the
+files to be replaced/deleted into a given backup directory (instead of directly
+replacing/deleting them). For example, to instruct rclone to move the files into
+the directory rclone-backup-dir on backend mysharepoint, you may use:
 
-I believe the error it avoids is `nameAlreadyExists`
+```
+--backup-dir mysharepoint:rclone-backup-dir
+```

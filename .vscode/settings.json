@@ -1,4 +1,5 @@
 {
     "prettier.proseWrap": "always",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "markdown.extension.preview.autoShowPreviewToSide": true
 }
